@@ -1,4 +1,5 @@
 import { LoginRequest, ResponseErr, UsuarioResponse } from "./models"
+import decode from 'jwt-decode'
 import * as SweetAlert2 from 'sweetalert2'
 
 const pending = ref(false)
@@ -38,13 +39,22 @@ export default function useAuthentication()
         }catch(error){
             console.log(error)
         }
+    }
 
+    const validToken = () => {
+        const token = localStorage.getItem('token')!
+
+        if(!token) return false
+
+        const tokenDecode = decode(token) as any
+        const tiempo = Date.now() / 1000
         
-        
+        return tokenDecode.exp > tiempo
     }
 
     return {
         pending,
+        validToken,
         login
     }
 
