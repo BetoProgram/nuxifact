@@ -1,8 +1,7 @@
-<template>
-    <div>
+<script setup lang="ts">
+import AppLayout from '@/layouts/AppLayout.vue';
+</script>
 
-        <main>
-            <slot />
-        </main>
-    </div>
+<template>
+    <app-layout></app-layout>
 </template>

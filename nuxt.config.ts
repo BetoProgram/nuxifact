@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
     "primevue/resources/themes/lara-light-blue/theme.css",
-    "primevue/resources/primevue.css"
+    "primevue/resources/primevue.css",
+    "@/assets/styles.scss"
   ],
   build: {
     transpile: ['primevue']
@@ -14,5 +15,10 @@ export default defineNuxtConfig({
   modules:[
     '@nuxtjs/tailwindcss'
   ],
-  ssr: false
+  ssr: false,
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL || 'http://localhost:5207/api'
+    }
+  }
 })

@@ -1,14 +1,15 @@
 <template>
   <div>
-    <Button @click="irRuta" label="Ir a ruta"/>
+    <h1>Pagina Principal</h1>
   </div>
 </template>
 <script setup lang="ts">
-const router = useRouter()
 
-
-function irRuta(){
-  router.push('/ruta')
-}
+//ruta protegida
+definePageMeta({
+  middleware: [
+    'auth'
+  ]
+})
 </script>
 

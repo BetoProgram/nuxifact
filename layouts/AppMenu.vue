@@ -1,0 +1,46 @@
+<script setup>
+import { ref } from 'vue';
+import AppMenuItem from './AppMenuItem.vue';
+const model = ref([
+    {
+        label: 'Home',
+        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
+    },
+    {
+        label: 'App',
+        items: [
+            {
+                label: 'Clientes',
+                icon: 'pi pi-fw pi-users',
+                to: '/clientes'
+            },
+            { 
+                label: 'Productos', 
+                icon: 'pi pi-fw pi-box', 
+                to: '/productos' 
+            },
+            {
+                label: 'Facturas',
+                icon: 'pi pi-fw pi-money-bill',
+                to: '/facturas'
+            }
+        ]
+    }
+]);
+</script>
+
+<template>
+    <ul class="layout-menu">
+        <template v-for="(item, i) in model" :key="item">
+            <app-menu-item v-if="!item.separator" :item="item" :index="i"></app-menu-item>
+            <li v-if="item.separator" class="menu-separator"></li>
+        </template>
+        <!-- <li>
+            <a href="https://www.primefaces.org/primeblocks-vue/#/" target="_blank">
+                <img src="/layout/images/banner-primeblocks.png" alt="Prime Blocks" class="w-full mt-3" />
+            </a>
+        </li> -->
+    </ul>
+</template>
+
+<style lang="scss" scoped></style>

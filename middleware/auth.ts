@@ -1,8 +1,8 @@
 export default defineNuxtRouteMiddleware((to, from) =>{
-    const { entrarApp } = useAuthentication();
+    const token = localStorage.getItem('token')
 
-    if(!entrarApp.value){
-        alert('No tienes permiso!!')
+    if(!token){
+        alert('Token Invalido')
         return navigateTo('/auth/login')
     }
 })
