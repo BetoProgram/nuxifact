@@ -65,7 +65,7 @@ const initialValues = {
 
 interface Props {
     clienteDialog?: boolean,
-    cliente?: ClienteResponse
+    cliente?: any
 }
 
 type UpdateCliente = {
@@ -102,7 +102,7 @@ const onSubmit = (values:any, actions:any) => {
     const clienteIn:ClienteRequest = {
         nombre, email, telefono, direccion
     }
-    if(clienteRef.value?.nombre === ''){
+    if(!clienteRef.value?.id){
         emit('agregarCliente', clienteIn)
     }else{
         const value = {

@@ -1,0 +1,8 @@
+{
+    "pathLocal":{
+        "app": "http://localhost:5207/api"
+    },
+    "pathDev":{
+        "app": "http://api.fact.com:81/api"
+    }
+}

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Clientes</h1>
+        <h1>Clientes {{ isLoadingInsert ? 'Espere...' : '' }}</h1>
 
         <Toolbar class="mb-4">
           <template #start>
@@ -11,7 +11,8 @@
           </template>
         </Toolbar>
 
-        <DataTable :value="clientes" paginator :rows="10" :rowsPerPageOptions="[10, 20, 30,50]" tableStyle="min-width: 50rem">
+        <DataTable :value="clientes" paginator :rows="10" :loading="isLoading"
+        :rowsPerPageOptions="[10, 20, 30,50]" tableStyle="min-width: 50rem">
           <Column field="nombre" header="Nombre" style="width: 25%"></Column>
           <Column field="direccion" header="Direccion" style="width: 25%"></Column>
           <Column field="telefono" header="Telefono" style="width: 25%"></Column>
@@ -29,8 +30,8 @@
         :cliente="clientePase"
         @close="showDialog = $event"
         @clearCliente="clientePase = $event"
-        @agregarCliente = "guardarClientes($event)"
-        @actualizaCliente="actualizaClientes($event)"
+        @agregarCliente = "issueMutationAddCliente.mutate($event)"
+        @actualizaCliente="clienteMutationUpdateCliente.mutate($event)"
          />
     </div>
 </template>
@@ -38,9 +39,10 @@
 <script setup lang="ts">
 import { ClienteResponse } from '~/composables/models';
 
-const { clientes, guardarClientes, actualizaClientes, confirmarEliminarCliente } = useClientes()
+const { clientes, isLoading ,issueMutationAddCliente,clienteMutationUpdateCliente, confirmarEliminarCliente } = useClientes()
 const showDialog = ref(false)
 const clientePase = ref<ClienteResponse>()
+const { isLoading: isLoadingInsert } = issueMutationAddCliente
 
 const openDialog = () => {
   showDialog.value = true

@@ -10,7 +10,7 @@
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <Form @submit="onSubmit" :initial-values="initialValues" :validation-schema="schema" class="space-y-6">
                 <Field name="username" v-slot="{ field, errorMessage }">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
                     <div class="mt-2">
                         <InputText id="email" v-bind="field" name="email" type="text" autocomplete="email" 
                         :class="{ 'p-invalid': errorMessage }"
@@ -39,7 +39,8 @@
             </Form>
             <p v-if="pending">Espere...</p>
         </div>
-</div></template>
+</div>
+</template>
 
 <script setup lang="ts">
 import * as yup from 'yup'
