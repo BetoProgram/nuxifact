@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   ssr: false,
   runtimeConfig: {
     public: {
-      baseURL: process.env.BASE_URL || 'http://api.fact.com:81/api'
+      baseURL: process.env.NODE_ENV === 'production' ? 'http://api.fact.com:81/api': 'http://localhost:5207/api'
     }
   }
 })
